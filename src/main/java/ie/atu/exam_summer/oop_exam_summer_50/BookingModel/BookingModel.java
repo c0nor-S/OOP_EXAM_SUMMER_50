@@ -1,18 +1,23 @@
 package ie.atu.exam_summer.oop_exam_summer_50.BookingModel;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 public class BookingModel {
-    @Schema(accessMode = Schema.AccessMode.READONLY)
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long bookingID;
-    @NotBlank(message = "Student Email Is Required");
+    @NotBlank(message = "Room Number Is Required.")
     private double roomNumber;
+    @Email(message = "Student Email Is Required.")
     private String studentEmail;
-    @Positive(message = "Booking Date Must Be Valid");
+    @FutureOrPresent(message = "Booking Date Is Invalid.")
     private String bookingDate;
+    @FutureOrPresent(message = "Invalid Starting Hour.")
     private double startHour;
+    @Positive(message = "Duration Hour(s) Must Be Greater Than One.")
     private double durationHours;
 
 
@@ -48,7 +53,7 @@ public class BookingModel {
         public String getBookingDate() {
             return bookingDate;
         }
-        public void setBookingdate(String bookingDate) {
+        public void setBookingDate(String bookingDate) {
             this.bookingDate = bookingDate;
         }
 
